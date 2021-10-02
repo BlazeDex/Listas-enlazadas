@@ -15,17 +15,17 @@ export default class Group {
         }
     }
     
-    list(table) {
-        let person = this._start;
-
+    list() {
+        let person = this._start;    
+        let txt = '';
+        
+        
         while(person !== null) {
-            let rowProducts = table.insertRow(-1);
-            let colCode = rowProducts.insertCell(0);
-            let colName = rowProducts.insertCell(1);  
-            colCode.innerHTML = person.getCode();
-            colName.innerHTML = person.getName();
-            person = person._next;              
-        }      
+            let txtNext = ` ${person.getCode()}: ${person.getName()}.`;                  
+            person = person._next;
+                
+            txt += txtNext;               
+        }
+        return txt;                
     }
 }
-

@@ -41,20 +41,19 @@ class App {
 
     listPerson = () => {
         let details = document.getElementById('details');
-        let list = this._group.list();
-        
-        if(list) {
-            this._update();    
-            this._showTable();
-            details.innerHTML += `<h4>Lista predeterminada.</h4>`;
+        let table = document.getElementById('table');
+
+        if(this._group._start === null) {
+            details.innerHTML += '<h4>No hay nadie.</h4>';
         } else {
-            details.innerHTML += 
-            '<h4>No hay nadie registrado en el grupo.</h4>';  
-        }
-        console.log(this._group)
+            details.innerHTML += '<h4>Lista Predeterminada.</h4>';
+            this._update();
+            this._group.list(table);
+            
+        }         
     }
     
-    // Métodos privados para mostrar tablas //    
+    // Métodos privados para actualizar la tabla //    
     _update() {
         let table = document.getElementById('table');
         let htmlTable = `<tr>
@@ -63,20 +62,6 @@ class App {
                         </tr>`
 
         table.innerHTML = htmlTable;
-    }
-
-    _showTable() {
-        let table = document.getElementById('table');
-        let person = this._group._start;
-
-        while(person !== null) {
-            let rowProducts = table.insertRow(-1);
-            let colCode = rowProducts.insertCell(0);
-            let colName = rowProducts.insertCell(1);  
-            colCode.innerHTML = person.getCode();
-            colName.innerHTML = person.getName();
-            person = person._next;              
-        }    
     }
 }
 new App();

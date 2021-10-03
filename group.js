@@ -1,4 +1,4 @@
-class Group {    
+export default class Group {    
     constructor() {
         this._start = null;
     }

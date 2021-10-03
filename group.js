@@ -1,4 +1,4 @@
-export default class Group {    
+class Group {    
     constructor() {
         this._start = null;
     }
@@ -18,14 +18,18 @@ export default class Group {
     list() {
         let person = this._start;    
         let txt = '';
-        
-        
-        while(person !== null) {
-            let txtNext = ` ${person.getCode()}: ${person.getName()}.`;                  
-            person = person._next;
-                
-            txt += txtNext;               
-        }
-        return txt;                
+
+        if(person === null) {
+            txt = 'No hay nadie registrado.';
+            return txt;
+        } else {
+            while(person !== null) {   
+                let txtNext= ` ${person.getCode()}: ${person.getName()}.`;
+                        
+                person = person._next;                        
+                txt += txtNext;               
+            }
+            return txt.trim();
+        }                 
     }
 }
